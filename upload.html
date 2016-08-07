@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="jq.js"></script>
+		<script src="tinymce/tinymce.min.js"></script>
+		<script src="mce.js"></script>
+		<style>
+		html,body
+		{
+			height: 300px;
+		}
+		</style>
+	</head>
+	<body>
+		<div style="text-align: center; margin-bottom: 10px;">
+			<button id="t1"class="save" > Save template A. </button>
+			<button id="t1"class="load" style="margin-left: 10px;"> Load template A. </button>
+			<button id="t2"class="save" style="margin-left: 10px;" > Save template B. </button>
+			<button id="t2"class="load" style="margin-left: 10px;"> Load template B. </button>
+		</div>
+		<textarea rows="10" cols="60" id="bodycontent" placeholder="Type your email body here."></textarea>
+		<br />
+		<span style="font-size: 14px;">Select the file(s) you'd like to send along with your email, if any:</span>
+		<br />
+		<input type="file" multiple id="upload" />
+		<div id="submittedfiles"></div>
+		<br />
+		<button id="run" style="margin: auto;display: block;"> Send </button>
+		<br />
+		<script src="upload.js"></script>
+		<div id="loading" style="display: none;text-align: center;">
+			<img style="margin: auto;display: block;" src="load.gif" />
+			<span id="progress">Preparing files...</span>
+			<span id="progcount"></span>
+		</div>
+	</body>
+</html>

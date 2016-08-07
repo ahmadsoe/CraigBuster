@@ -1,0 +1,59 @@
+{
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "update_url": "https://clients2.google.com/service/update2/crx",
+    "manifest_version": 2,
+    "name" : "CraigBuster - Craigslist Mass Autoreply",
+    "short_name": "CraigBuster",
+    "description": "Mass respond to craigslist ads.",
+    "version": "0.1.3",
+    "icons": {
+        "16": "icon.png",
+        "48": "icon.png",
+        "128": "icon.png"
+    },
+    "page_action": {
+    	"default_popup": "upload.html",
+        "default_icon": "icon.png"
+    },
+    "background": {
+        "scripts": ["jq.js","background.js"],
+        "run_at": "document_end",
+        "persistent": false
+    },
+    "permissions": [
+        "activeTab",
+        "storage",
+        "contextMenus",
+        "https://*.craigslist.org/*",
+        "http://*.craigslist.org/*",
+        "http://mail.google.com/*",
+        "https://mail.google.com/*"
+    ],
+    "content_scripts": [{
+        "matches": ["http://*.craigslist.org/reply/*", "https://*.craigslist.org/reply/*"],
+        "all_frames": false,
+        "js": ["jq.js","captcha.js"]
+    },
+    {
+        "matches": ["http://*.craigslist.org/search/*", "https://*.craigslist.org/search/*"],
+        "all_frames": false,
+        "js": ["jq.js","mark.js"]
+    }],
+    "commands": {
+        "_execute_page_action": {
+            "suggested_key": {
+                "windows": "Ctrl+Shift+S",
+                "mac": "Command+Shift+S",
+                "chromeos": "Ctrl+Shift+S",
+                "linux": "Ctrl+Shift+S"
+            },
+            "description": "Send Emails!"
+        }
+    },
+    "web_accessible_resources": [
+        "jq.js",
+        "functions.js",
+        "check.png",
+        "tinymce/*"
+    ]
+}
